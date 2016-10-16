@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //var routes = require('./routes/index');
-var login = require('./routes/login');
+var user_login = require('./routes/user_login');
+
+var admin_login = require('./routes/admin_login');
 
 var app = express();
 
@@ -29,7 +31,8 @@ console.log('Magic happens on port' + port);
 
 
 //app.use('/', routes);
-app.use('/UserLogin', login);
+app.use('/UserLogin', user_login);
+app.use('/Admin_login', admin_login);
 
 
 // catch 404 and forward to error handler

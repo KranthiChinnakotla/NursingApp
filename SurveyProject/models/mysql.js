@@ -21,9 +21,21 @@ var Patient = bookshelf.Model.extend({
 tableName: 'Patients'
 });
 
+var Admin = bookshelf.Model.extend({
+tableName: 'Admin_details'
+});
+
 module.exports.login_user = function(user,pass,callback) {
 
 new Patient({username: user , passw: pass })
+.fetch()
+.then(callback);
+	
+}
+
+module.exports.login_admin = function(user,pass,callback) {
+
+new Patient({user: user , passw: pass })
 .fetch()
 .then(callback);
 	
