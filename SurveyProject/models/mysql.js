@@ -18,12 +18,40 @@ console.log("bookshelf");
 
 
 var Patient = bookshelf.Model.extend({
-tableName: 'Patients'
+tableName: 'Patients',
+patient_response: function() {
+    return this.hasMany(Patient_response);
+  }
+});
+
+var Patinet_response = bookshelf.Model.extend({
+   tableName : 'patinet_response',
+     patient: function() {
+    return this.belongsTo(Patient);
+    
 });
 
 var Admin = bookshelf.Model.extend({
 tableName: 'Admin_details'
 });
+
+
+var Questions = bookshelf.Model.extend({
+tableName: 'Questions'
+});
+
+module.exports.Questions = function(callback) {
+new Patient()
+.fetchAll()
+.then(callback);
+}
+module.exports.login_user = function(user,pass,callback) {
+
+new Patient({username: user , passw: pass })
+.fetch()
+.then(callback);
+	
+}
 
 module.exports.login_user = function(user,pass,callback) {
 
@@ -35,7 +63,7 @@ new Patient({username: user , passw: pass })
 
 module.exports.login_admin = function(user,pass,callback) {
 
-new Patient({user: user , passw: pass })
+new Admin({user: user , password: pass })
 .fetch()
 .then(callback);
 	
