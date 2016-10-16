@@ -1,5 +1,4 @@
 
-var jwt = require('jsonwebtoken');
 var express = require('express');
 console.log('login.js');
 var login = express.Router();

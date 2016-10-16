@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var user_login = require('./routes/user_login');
 var questions = require('./routes/questions');
 var admin_login = require('./routes/admin_login');
+var allpatients = require('./routes/allpatients');
 
 var app = express();
 
@@ -34,6 +35,7 @@ console.log('Magic happens on port' + port);
 app.use('/UserLogin', user_login);
 app.use('/Questions', questions);
 app.use('/AdminLogin', admin_login);
+app.use('/allpatients', allpatients);
 
 
 // catch 404 and forward to error handler

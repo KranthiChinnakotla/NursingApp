@@ -28,7 +28,7 @@ var Patinet_response = bookshelf.Model.extend({
    tableName : 'patinet_response',
      patient: function() {
     return this.belongsTo(Patient);
-    
+     }
 });
 
 var Admin = bookshelf.Model.extend({
@@ -45,10 +45,10 @@ new Patient()
 .fetchAll()
 .then(callback);
 }
-module.exports.login_user = function(user,pass,callback) {
+module.exports.allpatients = function(callback) {
 
-new Patient({username: user , passw: pass })
-.fetch()
+new Patient()
+.fetchAll()
 .then(callback);
 	
 }
