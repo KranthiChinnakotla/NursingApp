@@ -41,7 +41,7 @@ tableName: 'Questions'
 });
 
 module.exports.Questions = function(callback) {
-new Patient()
+new Questions()
 .fetchAll()
 .then(callback);
 }

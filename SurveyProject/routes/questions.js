@@ -6,11 +6,9 @@ var mysql = require('../models/mysql');
 
 login.get('/', function (req, res,next) {
 console.log('questions');
- mysql.Questions(user,password, function(model) {
+ mysql.Questions( function(model) {
     console.log(model);
-    
     res.json({statusCode: 200, message : " Questions ", data: model});
-    
 });
 });
 
