@@ -12,6 +12,7 @@ var admin_login = require('./routes/admin_login');
 var allpatients = require('./routes/allpatients');
 var new_user = require('./routes/new_user');
 var home = require('./routes/home');
+var pr = require('./routes/patient_response');
 
 var app = express();
 
@@ -33,13 +34,14 @@ app.use(session({secret: 'test',
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/UserLogin', user_login);
 app.use('/Questions', questions);
 app.use('/AdminLogin', admin_login);
 app.use('/allpatients', allpatients);
+app.use('/patient_response', pr);
 app.use('/new_user', new_user);
 app.use('/home', home);
 

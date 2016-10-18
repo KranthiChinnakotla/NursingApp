@@ -20,7 +20,7 @@ login.get('/', function (req, res,next) {
             res.render('pages/admin_login',{statusCode : 200 , message : "invalid credentials" , error: "invalid credentials"});
             //res.json({statusCode: 200, message : "invalid cedentials", data: null});
         }else{
-            var token = jwt.sign({ user: user }, 'test' ,  {expiresIn:'60000', jwtid: 'jwtid' });
+            var token = jwt.sign({ user: user }, 'test' ,  {expiresIn:'1800000', jwtid: 'jwtid' });
             req.session.token = token;
             res.redirect('/home');
              //res.render('pages/home',{statusCode : 200 , message : "valid credentials"});

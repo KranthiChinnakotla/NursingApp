@@ -55,14 +55,6 @@ new Patient()
 	
 }
 
-module.exports.login_user = function(user,pass,callback) {
-var pass = bcrypt.hashSync(pass, saltRounds);
-new Patient({username: user , passw: pass })
-.fetch()
-.then(callback);
-	
-}
-
 module.exports.login_admin = function(user,pass,callback) {
 //var pass = bcrypt.hashSync(pass, saltRounds);
 new Admin({user: user , password: pass })
@@ -73,6 +65,8 @@ new Admin({user: user , password: pass })
 
 module.exports.add_user = function(user,callback) {
 user.passw = bcrypt.hashSync(user.passw, saltRounds);
+     console.log(user.username+' and '+user.passw);
+    
 new Patient(user).save()
 .then(callback);
 	
