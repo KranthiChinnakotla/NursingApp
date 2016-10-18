@@ -11,10 +11,40 @@
 
      <div class="container-fluid">
 <h1>home</h1>
-       
-  
-         
+         <form class="form-signin" action = "/new_user" method="POST">
+					<h2 class="form-signin-heading">Add New Patients</h2>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" name="name" required>
+                        <% if( typeof error !== 'undefined'){
+                            %><%=error%><%
+                        }%>
+					</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username" required>
+					</div>
+					<div class="form-group">
+						<label for="gender">gender</label>
+						<select class="form-control" id="gender"  name = "gender">
+							<option value="Male" >Male</option>
+							<option value="Female" >Female</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="age">age</label>
+						<input type="number" class="form-control" id="age" min=0 max=200 name="age" required>
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label>
+						<input type="password" class="form-control" id="pwd" name="passw" required>
+					</div>
+					<button id="formsubmit" type="submit" class="btn btn-lg btn-primary btn-block">Add</button>
+				
+			</form>
     </div>
+         
+    
     <footer>
         <% include ../partials/footer %>
     </footer>

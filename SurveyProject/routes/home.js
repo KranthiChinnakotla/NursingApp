@@ -17,15 +17,6 @@ home.get('/', function (req, res,next) {
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
   }else{
       console.log(err);
       user = null ;  

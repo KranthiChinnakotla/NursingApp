@@ -2,6 +2,8 @@
  
 //var exports = module.exports = {};
 var mysql = require('mysql');
+var bcrypt = require('bcrypt');
+var saltRounds = 5;
 var knex = require('knex')({
   client: 'mysql',
   connection: {
@@ -54,7 +56,7 @@ new Patient()
 }
 
 module.exports.login_user = function(user,pass,callback) {
-
+var pass = bcrypt.hashSync(pass, saltRounds);
 new Patient({username: user , passw: pass })
 .fetch()
 .then(callback);
@@ -62,8 +64,23 @@ new Patient({username: user , passw: pass })
 }
 
 module.exports.login_admin = function(user,pass,callback) {
-
+//var pass = bcrypt.hashSync(pass, saltRounds);
 new Admin({user: user , password: pass })
+.fetch()
+.then(callback);
+	
+}
+
+module.exports.add_user = function(user,callback) {
+user.passw = bcrypt.hashSync(user.passw, saltRounds);
+new Patient(user).save()
+.then(callback);
+	
+}
+
+module.exports.check_user = function(user,callback) {
+
+new Patient({username: user })
 .fetch()
 .then(callback);
 	

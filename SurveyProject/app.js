@@ -10,6 +10,7 @@ var user_login = require('./routes/user_login');
 var questions = require('./routes/questions');
 var admin_login = require('./routes/admin_login');
 var allpatients = require('./routes/allpatients');
+var new_user = require('./routes/new_user');
 var home = require('./routes/home');
 
 var app = express();
@@ -39,6 +40,7 @@ app.use('/UserLogin', user_login);
 app.use('/Questions', questions);
 app.use('/AdminLogin', admin_login);
 app.use('/allpatients', allpatients);
+app.use('/new_user', new_user);
 app.use('/home', home);
 
 
