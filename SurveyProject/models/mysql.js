@@ -28,6 +28,7 @@ var Patinet_response = bookshelf.Model.extend({
    tableName : 'patinet_response',
      patient: function() {
     return this.belongsTo(Patient);
+    }
     
 });
 
