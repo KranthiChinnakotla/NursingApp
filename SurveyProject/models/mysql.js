@@ -20,17 +20,27 @@ console.log("bookshelf");
 
 
 var Patient = bookshelf.Model.extend({
-tableName: 'Patients',
-patient_response: function() {
-    return this.hasMany(Patient_response);
-  }
+tableName: 'Patients'
+// patient_response: function() {
+//     return this.hasMany(Patient_response);
+//   },patient_report: function() {
+//         return this.hasMany(Patient_report);
+//     }
+
 });
 
-var Patinet_response = bookshelf.Model.extend({
-   tableName : 'patinet_response',
+var Patient_response = bookshelf.Model.extend({
+   tableName : 'patient_response',
      patient: function() {
     return this.belongsTo(Patient);
      }
+});
+
+var Patient_report = bookshelf.Model.extend({
+    tableName : 'patient_report',
+    patient: function() {
+        return this.belongsTo(Patient);
+    }
 });
 
 var Admin = bookshelf.Model.extend({
@@ -46,13 +56,6 @@ module.exports.Questions = function(callback) {
 new Questions()
 .fetchAll()
 .then(callback);
-}
-module.exports.allpatients = function(callback) {
-
-new Patient()
-.fetchAll()
-.then(callback);
-	
 }
 
 module.exports.login_admin = function(user,pass,callback) {
@@ -73,9 +76,33 @@ new Patient(user).save()
 }
 
 module.exports.check_user = function(user,callback) {
-
 new Patient({username: user })
 .fetch()
 .then(callback);
-	
 }
+
+module.exports.put_patient_response = function(data,callback) {
+    //console.log(data);
+    new Patient_response().save(data)
+        .then(callback);
+}
+
+module.exports.get_patient_response = function(user,callback) {
+    new Patient_response({username: user })
+        .fetch()
+        .then(callback);
+}
+
+module.exports.put_patient_report = function(data,callback) {
+    //console.log(data);
+    new Patient_report().save(data)
+        .then(callback);
+}
+
+module.exports.get_patient_report = function(user,callback) {
+    new Patient_report({username: user })
+        .fetch()
+        .then(callback);
+}
+
+

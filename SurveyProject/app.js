@@ -13,6 +13,7 @@ var allpatients = require('./routes/allpatients');
 var new_user = require('./routes/new_user');
 var home = require('./routes/home');
 var pr = require('./routes/patient_response');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use('/allpatients', allpatients);
 app.use('/patient_response', pr);
 app.use('/new_user', new_user);
 app.use('/home', home);
+app.use('/dashboard', dashboard);
 
 
 var msg = 'Welcome to our API';
