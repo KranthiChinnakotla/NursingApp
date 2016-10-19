@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+
+    <link rel="stylesheet" href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'>
+    <script  type="text/javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>
+    <script  type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script>
+        var data = <%- (data) %>;
+        console.log(data);
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                data: data,
+                columns: [
+                    {'data' : 'username'},
+                    {'data' : 'passw'},
+                    {'data' : 'name'},
+                    {'data' : 'gender'},
+                    {'data' : 'age'}
+                ]
+            });
+        } );
+    </script>
+    
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+     <div class="container-fluid">
+<h1>Logout</h1>
+
+
+         <table id="example" class="display" cellspacing="0" width="100%">
+             <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Position</th>
+                 <th>Office</th>
+                 <th>Extn.</th>
+                 <th>Start date</th>
+
+             </tr>
+             </thead>
+             <tfoot>
+             <tr>
+                 <th>Name</th>
+                 <th>Position</th>
+                 <th>Office</th>
+                 <th>Extn.</th>
+                 <th>Start date</th>
+
+             </tr>
+             </tfoot>
+         </table>
+        
+    </div>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    
+</body>
+</html>
