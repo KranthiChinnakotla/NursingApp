@@ -80,6 +80,11 @@ new Patient({username: user })
 .fetch()
 .then(callback);
 }
+module.exports.allpatients = function(callback) {
+    new Patient()
+        .fetchAll()
+        .then(callback);
+}
 
 module.exports.put_patient_response = function(data,callback) {
     //console.log(data);
@@ -88,8 +93,9 @@ module.exports.put_patient_response = function(data,callback) {
 }
 
 module.exports.get_patient_response = function(user,callback) {
+    console.log(user);
     new Patient_response({username: user })
-        .fetch()
+        .fetchAll()
         .then(callback);
 }
 
@@ -99,8 +105,8 @@ module.exports.put_patient_report = function(data,callback) {
         .then(callback);
 }
 
-module.exports.get_patient_report = function(user,callback) {
-    new Patient_report({username: user })
+module.exports.get_patient_report = function(id,callback) {
+    new Patient_report({rID: id })
         .fetch()
         .then(callback);
 }

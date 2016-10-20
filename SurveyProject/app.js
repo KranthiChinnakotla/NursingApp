@@ -14,6 +14,9 @@ var new_user = require('./routes/new_user');
 var home = require('./routes/home');
 var pr = require('./routes/patient_response');
 var dashboard = require('./routes/dashboard');
+var questionstodb = require('./routes/insert_into_db');
+
+var display_report = require('./routes/display_patient_report');
 
 var app = express();
 
@@ -46,6 +49,8 @@ app.use('/patient_response', pr);
 app.use('/new_user', new_user);
 app.use('/home', home);
 app.use('/dashboard', dashboard);
+app.use('/display_patient_report',display_report);
+app.use('/insert',questionstodb);
 
 
 var msg = 'Welcome to our API';
