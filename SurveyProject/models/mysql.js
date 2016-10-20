@@ -33,6 +33,10 @@ var Patient_response = bookshelf.Model.extend({
    tableName : 'patient_response',
      patient: function() {
     return this.belongsTo(Patient);
+<<<<<<< HEAD
+    }
+    
+=======
      }
 });
 
@@ -41,6 +45,7 @@ var Patient_report = bookshelf.Model.extend({
     patient: function() {
         return this.belongsTo(Patient);
     }
+>>>>>>> bf1f0fd8621bb53331048c82be32acd968ef9f05
 });
 
 var Admin = bookshelf.Model.extend({

@@ -1,7 +1,7 @@
 Category,Question,Number Of Days,Checkbox
 Medication Usage,Take your blood pressure pills?,7,I have not been prescribed blood pressure pills. 
-Medication Usage,"Take your blood pressure pills at thesame time everyday?",7,I have not been prescribed blood pressure pills. 
-Medication Usage," Take the recommended number ofblood pressure pills?",7,I have not been prescribed blood pressure pills. 
+Medication Usage,Take your blood pressure pills at the same time everyday?,7,I have not been prescribed blood pressure pills. 
+Medication Usage, Take the recommended number of blood pressure pills?,7,I have not been prescribed blood pressure pills. 
 Diet,Eat nuts or peanut butter?,7,I am allergic to nuts.
 Diet,"Eat beans, peas, or lentils?",7,null
 Diet,Eat eggs?,7,null
@@ -14,21 +14,21 @@ Diet,"Eat broccoli, collard greens, spinach, potatoes, squash or sweet potatoes?
 Diet,"Eat apples, bananas, oranges, melon or raisins?",7,null
 Diet,"Eat whole grain breads, cereals, grits, oatmeal or brown rice?",7,null
 Physical Activity,Do at least 30 minutes total of physical activity?,7,null
-Physical Activity,"Do a specific exercise activity (such as swimming, walking, or biking) other than what you do around the house or as part of your work?",7,null
-Physical Activity,"Engage in weight lifting or strength training (other than what you do around the house or as part of your work)?",7,null
-Physical Activity,"Do any repeated heavy lifting or pushing/pulling of heavy items either for your job or around the house or garden?",7,null
-Smoking," Smoke a cigarette or cigar, even justone puff?",7,null
-Smoking," Stay in a room or ride in an enclosedvehicle while someone was smoking?",7,null
+Physical Activity,"Do a specific exercise activity (such as swimming, walking, or biking) other than what you do around the house or as part of your work?",7,null
+Physical Activity,Engage in weight lifting or strength training (other than what you do  around the house or as part of your work)?,7,null
+Physical Activity,Do any repeated heavy lifting or pushing/pulling of heavy items either for your job or around the house or garden?,7,null
+Smoking," Smoke a cigarette or cigar, even just one puff?",7,null
+Smoking, Stay in a room or ride in an enclosed vehicle while someone was smoking?,7,null
 Weight Management, I am careful about what I eat.,5,null
 Weight Management,I read food labels when I grocery shop.,5,null
-Weight Management," I exercise in order to lose or maintainweight.",5,null
-Weight Management," I have cut out drinking sugary sodasand sweet tea.",5,null
-Weight Management," I eat smaller portions or eat fewerportions.",5,null
-Weight Management,"I have stopped buying or bringingunhealthy foods into my home.",5,null
-Weight Management," I have cut out or limit some foods that Ilike but that are not good for me.",5,null
-Weight Management," I eat at restaurants or fast food placesless often.",5,null
-Weight Management,"I substitute healthier foods for thingsthat I used to eat.",5,null
-Weight Management," I have modified my recipes when Icook.",5,null
-Alcohol Consumption," On average, how many days per weekdo you drink alcohol?",7,null
-Alcohol Consumption," On a typical day that you drinkalcohol, how many drinks do you have?",0,null
-Alcohol Consumption,"What is the largest number of drinksthat you’ve had on any given day withinthe last month?",0,null
+Weight Management, I exercise in order to lose or maintain weight.,5,null
+Weight Management, I have cut out drinking sugary sodas and sweet tea.,5,null
+Weight Management, I eat smaller portions or eat fewer portions.,5,null
+Weight Management,I have stopped buying or bringing unhealthy foods into my home.,5,null
+Weight Management, I have cut out or limit some foods that I like but that are not good for me.,5,null
+Weight Management, I eat at restaurants or fast food places less often.,5,null
+Weight Management,I substitute healthier foods for things that I used to eat.,5,null
+Weight Management, I have modified my recipes when I cook.,5,null
+Alcohol Consumption," On average, how many days per week do you drink alcohol?",7,null
+Alcohol Consumption," On a typical day that you drink alcohol, how many drinks do you have?",0,null
+Alcohol Consumption,What is the largest number of drinksthat you have  had on any given day within the last month?,0,null
