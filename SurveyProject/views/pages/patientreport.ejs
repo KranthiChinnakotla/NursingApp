@@ -1,0 +1,101 @@
+<!-- Author
+    Name: Pawan Araballi -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <% include ../partials/headhomepage %>
+        <script>
+            $(document).ready(function() {
+                var tabledata = <%- (data) %> ;
+                $('#datatables').DataTable({
+                    data: tabledata,
+                    columns: [
+                        {'data': 'rID'},
+                        {'data': 'username'},
+                        {'data': 'Medication'},
+                        {'data': 'Diet'},
+                        {'data': 'PhysicalActivity'},
+                        {'data': 'Smoking'},
+                        {'data': 'WeightManagement'},
+                        {'data': 'Alcohol'},
+                        {'data': 'Medication_check'},
+                        {'data': 'Medication_result'},
+                        {'data': 'Dite_result'},
+                        {'data': 'PhysicalActivity_result'},
+                        {'data': 'Smoking_result'},
+                        {'data': 'WeightManagement_result'},
+                        {'data': 'Alcohol_result'}
+                    ],
+                    buttons: [
+                        'print'
+                    ]
+                });
+            });
+        </script>
+
+</head>
+<body class="container">
+
+<h2><%= data %></h2>
+
+<header>
+    <% include ../partials/headerdashboard %>
+
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+    <!--       <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+    <li class="active">
+    <a href="#">
+    Overview
+    <span class="sr-only">(current)</span>
+    </a>
+    </li>
+    <li>
+    <a href="#">Reports</a>
+    </li>
+    <li>
+    <a href="#">Analytics</a>
+    </li>
+    <li>
+    <a href="#">Export</a>
+    </li>
+    </ul>
+    </div> -->
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Patients Report</h1>
+        <h2 class="sub-header">The Patients Details</h2>
+        <div class="table-responsive">
+            <table id="datatables" class="row-border hover">
+                <thead>
+                <tr>
+                    <th>rID</th>
+                    <th>UserName</th>
+                    <th>Medication</th>
+                    <th>Diet</th>
+                    <th>PhysicalActivity</th>
+                    <th>Smoking</th>
+                    <th>WeightManagement</th>
+                    <th>Alcohol</th>
+                    <th>Medication_result</th>
+                    <th>Medication_check</th>
+                    <th>Dite_result</th>
+                    <th>PhysicalActivity_result</th>
+                    <th>Smoking_result</th>
+                    <th>WeightManagement_result</th>
+                    <th>Alcohol_result</th>x
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    </div>
+    </div>
+    <footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

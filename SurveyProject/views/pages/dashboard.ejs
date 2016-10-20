@@ -11,10 +11,22 @@
             $(document).ready(function(){
                 var tabledata = "";
                 var feeddata = [];
-                var malefeed = [];
+                var malefeed20 = [];
+                var malefeed40 = [];
+                var malefeed60 = [];
+                var malefeed80 = [];
+                var malefeed100 = [];
                 var femalefeed = [];
-                var malecount = 0;
-                var femalecount = 0;
+                var malecount20 = 0;
+                var malecount40 = 0;
+                var malecount60 = 0;
+                var malecount80 = 0;
+                var malecount100 = 0;
+                var femalecount20 = 0;
+                var femalecount40 = 0;
+                var femalecount60 = 0;
+                var femalecount80 = 0;
+                var femalecount100 = 0;
                 $.ajax({
                     url: '/allpatients',
                     method: 'GET',
@@ -25,12 +37,38 @@
                     //Iterating through all the objects to store the Gender Data
                     $.each(tabledata, function(i, obj) {
                         feeddata.push([obj.username, obj.name, obj.gender, obj.age]);
-                        if(obj.gender == "Male"){
-                            malefeed.push([1, obj.age]);
-                            malecount++;
-                        }else{
-                            femalefeed.push([2, obj.age]);
-                            femalecount++;
+                        if(obj.gender == "Male" && obj.age < 20){
+                            //malefeed20.push([obj.age]);
+                            malecount20++;
+                        }else if (obj.gender == "Male" && obj.age >= 21 && obj.age <=40){
+                            //malefeed40.push([obj.age]);
+                            malefeed40++;
+                        }else if (obj.gender == "Male" && obj.age >= 41 && obj.age <=60){
+                            //malefeed40.push([obj.age]);
+                            malefeed60++;
+                        }else if (obj.gender == "Male" && obj.age >= 61 && obj.age <=80){
+                            //malefeed40.push([obj.age]);
+                            malefeed80++;
+                        }else if (obj.gender == "Male" && obj.age >= 81 && obj.age <=100){
+                            //malefeed40.push([obj.age]);
+                            malefeed100++;
+                        }
+
+                        if(obj.gender == "Female" && obj.age < 20){
+                            //Femalefeed20.push([obj.age]);
+                            femalecount20++;
+                        }else if (obj.gender == "Female" && obj.age >= 21 && obj.age <=40){
+                            //Femalefeed40.push([obj.age]);
+                            femalecount40++;
+                        }else if (obj.gender == "Female" && obj.age >= 41 && obj.age <=60){
+                            //Femalefeed40.push([obj.age]);
+                            femalecount60++;
+                        }else if (obj.gender == "Female" && obj.age >= 61 && obj.age <=80){
+                            //Femalefeed40.push([obj.age]);
+                            femalecount80++;
+                        }else if (obj.gender == "Female" && obj.age >= 81 && obj.age <=100){
+                            //Femalefeed40.push([obj.age]);
+                            femalecount100++;
                         }
                     });
                     // Initializing the Data Tables to embed the dynamic data
@@ -41,7 +79,9 @@
                         {'data' : 'passw'},              
                         {'data' : 'name'},              
                         {'data' : 'gender'},              
-                        {'data' : 'age'}            
+                        {'data' : 'age'},
+                        {'data' : 'username',"render": function (data, type, full, meta) { return '<a href="display_patient_response?id='+data+'" >View Report</a>'; }},
+                        {'data' : 'username',"render": function (data, type, full, meta) { return '<a href="checkin?id='+data+'" >Check In</a>'; }}
                         ],
                         buttons: [
                         'excel'
@@ -65,42 +105,57 @@
                     $(function () {
                         $('#chart_div').highcharts({
                             chart: {
-                                plotBackgroundColor: null,
-                                plotBorderWidth: null,
-                                plotShadow: false,
-                                type: 'pie'
+                                type: 'bar'
                             },
                             title: {
-                                text: 'Gender Ratio of Survey'
+                                text: 'Age Graph'
+                            },
+                            xAxis: {
+                                categories: ['20', '40', '60', '80', '100'],
+                                title: {
+                                    text: null
+                                }
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Age Count',
+                                    align: 'high'
+                                },
+                                labels: {
+                                    overflow: 'justify'
+                                }
                             },
                             tooltip: {
-                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                valueSuffix: ' counts'
                             },
                             plotOptions: {
-                                pie: {
-                                    allowPointSelect: true,
-                                    cursor: 'pointer',
+                                bar: {
                                     dataLabels: {
-                                        enabled: true,
-                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                        style: {
-                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                                        }
+                                        enabled: true
                                     }
                                 }
                             },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'top',
+                                x: -40,
+                                y: 80,
+                                floating: true,
+                                borderWidth: 1,
+                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                shadow: true
+                            },
+                            credits: {
+                                enabled: false
+                            },
                             series: [{
-                                name: 'Gender',
-                                colorByPoint: true,
-                                data: [{
-                                    name: 'Male',
-                                    y: malecount
-                                }, {
-                                    name: 'Female',
-                                    y: femalecount,
-                                    sliced: true,
-                                    selected: true
-                                }]
+                                name: 'Male',
+                                data: [malecount20, malecount40, malecount60, malecount80, malecount100]
+                            }, {
+                                name: 'Female',
+                                data: [femalecount20, femalecount40, femalecount60, femalecount80, femalecount100]
                             }]
                         });
                     });
@@ -166,11 +221,13 @@
             <table id="datatables" class="row-border hover">
                 <thead>
                     <tr>
-                        <th id="tableusername">UserName</th>
+                        <th>UserName</th>
                         <th>Password</th>
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Age</th>
+                        <th>View Report</th>
+                        <th>Check In</th>
                     </tr>
                 </thead>
             </table>

@@ -30,7 +30,7 @@ user_response.get('/', function (req, res,next) {
                         console.log(model);
                        // res.json({statusCode: 200, message : " Questions ", data: model});
                         var questions = JSON.stringify(model);
-                        res.render('pages/dashboard',{statusCode : 200  , error: null, data : data, questions:questions});
+                        res.render('pages/patientsresponse',{statusCode : 200  , error: null, data : data, questions:questions});
 
                     });
 
@@ -40,7 +40,7 @@ user_response.get('/', function (req, res,next) {
 
         }else{
             console.log(err);
-            user = null ;
+            user  = null ;
             req.session.token = null ;
             res.render('pages/logout',{statusCode:200 , message : 'invalid session please login'});
 

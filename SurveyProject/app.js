@@ -15,9 +15,9 @@ var patientssignup = require('./routes/patientssignup');
 var pr = require('./routes/patient_response');
 var dashboard = require('./routes/dashboard');
 var questionstodb = require('./routes/insert_into_db');
-
 var display_report = require('./routes/display_patient_report');
 var display_response = require('./routes/display_patient_response');
+var checkin = require('./routes/chekin');
 
 var app = express();
 
@@ -53,6 +53,7 @@ app.use('/dashboard', dashboard);
 app.use('/display_patient_response',display_response);
 app.use('/display_patient_report',display_report);
 app.use('/insert',questionstodb);
+app.use('/checkin',checkin);
 
 
 var msg = 'Welcome to our API';

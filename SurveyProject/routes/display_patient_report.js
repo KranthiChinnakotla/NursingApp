@@ -26,7 +26,7 @@ user_response.get('/', function (req, res,next) {
                 }else{
                     console.log( JSON.stringify(model));
                     var data = JSON.stringify(model);
-                    res.render('pages/dashboard',{statusCode : 200  , error: null, data : data});
+                    res.render('pages/patientreport',{statusCode : 200  , error: null, data : data});
 
                 }
             });
