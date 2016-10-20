@@ -18,15 +18,21 @@ user_response.get('/', function (req, res,next) {
             console.log(decoded.user);
             var user = decoded.user;
 
-            mysql.get_patient_report(patient,function(model) {
+            mysql.get_patient_response(patient,function(model) {
                 if(model ==  null){
                     console.log("no data");
                     res.render('pages/admin_login',{statusCode : 200 , message : "invalid credentials" , error: "invalid credentials"});
 
                 }else{
-                    console.log( JSON.stringify(model));
+                   // console.log( JSON.stringify(model));
                     var data = JSON.stringify(model);
-                    res.render('pages/dashboard',{statusCode : 200  , error: null, data : data});
+                    mysql.Questions( function(model) {
+                        console.log(model);
+                       // res.json({statusCode: 200, message : " Questions ", data: model});
+                        var questions = JSON.stringify(model);
+                        res.render('pages/dashboard',{statusCode : 200  , error: null, data : data, questions:questions});
+
+                    });
 
                 }
             });

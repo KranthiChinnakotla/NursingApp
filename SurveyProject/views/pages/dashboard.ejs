@@ -1,70 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <% include ../partials/head %>
+<!-- Author 
+    Name: Pawan Araballi -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <% include ../partials/headhomepage %>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <title>Dashboard</title>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var tabledata = "";
+                var feeddata = [];
+                var malefeed = [];
+                var femalefeed = [];
+                var malecount = 0;
+                var femalecount = 0;
+                $.ajax({
+                    url: '/allpatients',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        tabledata = data.data;
+                        feeddata = [];
+                    //Iterating through all the objects to store the Gender Data
+                    $.each(tabledata, function(i, obj) {
+                        feeddata.push([obj.username, obj.name, obj.gender, obj.age]);
+                        if(obj.gender == "Male"){
+                            malefeed.push([1, obj.age]);
+                            malecount++;
+                        }else{
+                            femalefeed.push([2, obj.age]);
+                            femalecount++;
+                        }
+                    });
+                    // Initializing the Data Tables to embed the dynamic data
+                    $('#datatables').DataTable({
+                        data: data.data,
+                        columns: [
+                        {'data' : 'username'},              
+                        {'data' : 'passw'},              
+                        {'data' : 'name'},              
+                        {'data' : 'gender'},              
+                        {'data' : 'age'}            
+                        ],
+                        buttons: [
+                        'excel'
+                        ]
+                    });
 
-    <link rel="stylesheet" href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'>
-    <script  type="text/javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>
-    <script  type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script>
-        var data = <%- (data) %>;
-        console.log(data);
+                    //Making each row clickable
+/*                  $('body').on('click', '#datatables tbody tr', function () {
+                        var data = $( this ).data();
+                        console.log(data[0]);
+                        alert( 'You clicked on '+data[0]+'\'s row' );
+                    });*/
 
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                data: data,
-                columns: [
-                    {'data' : 'username'},
-                    {'data' : 'passw'},
-                    {'data' : 'name'},
-                    {'data' : 'gender'},
-                    {'data' : 'age'}
-                ]
+/*                  $('#datatables tbody').on('click', 'tr', function () {
+                        var row = $(this);
+                        var data = row.data();
+                        alert( 'You clicked on '+data[0]+'\'s row' );
+                    } );*/
+
+                    // Plotting of Pie charts using Highcharts
+                    $(function () {
+                        $('#chart_div').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Gender Ratio of Survey'
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        style: {
+                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                        }
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Gender',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Male',
+                                    y: malecount
+                                }, {
+                                    name: 'Female',
+                                    y: femalecount,
+                                    sliced: true,
+                                    selected: true
+                                }]
+                            }]
+                        });
+                    });
+                }
             });
-        } );
-    </script>
-    
+});
+</script>
 </head>
 <body class="container">
 
     <header>
-        <% include ../partials/header %>
+        <% include ../partials/headerdashboard %>
     </header>
 
-     <div class="container-fluid">
-<h1>Logout</h1>
-
-         <%= data%>
-
-         <table id="example" class="display" cellspacing="0" width="100%">
-             <thead>
-             <tr>
-                 <th>Name</th>
-                 <th>Position</th>
-                 <th>Office</th>
-                 <th>Extn.</th>
-                 <th>Start date</th>
-
-             </tr>
-             </thead>
-             <tfoot>
-             <tr>
-                 <th>Name</th>
-                 <th>Position</th>
-                 <th>Office</th>
-                 <th>Extn.</th>
-                 <th>Start date</th>
-
-             </tr>
-             </tfoot>
-         </table>
-        
+    <div class="container-fluid">
+        <div class="row">
+<!--       <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="active">
+            <a href="#">
+              Overview
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">Reports</a>
+          </li>
+          <li>
+            <a href="#">Analytics</a>
+          </li>
+          <li>
+            <a href="#">Export</a>
+          </li>
+        </ul>
+    </div> -->
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Dashboard</h1>
+        <div id="chart_div" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+<!--        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder thumbnail" width="200" height="200">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder thumbnail" width="200" height="200">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder thumbnail" width="200" height="200">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder thumbnail" width="200" height="200">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+            </div>
+        </div> -->
+        <h2 class="sub-header">The Patients Details</h2>
+        <div class="table-responsive">
+            <table id="datatables" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th id="tableusername">UserName</th>
+                        <th>Password</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-    <footer>
-        <% include ../partials/footer %>
-    </footer>
-    
+</div>
+</div>
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
 </body>
 </html>

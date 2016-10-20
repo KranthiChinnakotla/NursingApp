@@ -22,7 +22,7 @@ login.get('/', function (req, res,next) {
         }else{
             var token = jwt.sign({ user: user }, 'test' ,  {expiresIn:'1800000', jwtid: 'jwtid' });
             req.session.token = token;
-            res.redirect('/home');
+            res.redirect('/dashboard');
              //res.render('pages/home',{statusCode : 200 , message : "valid credentials"});
             //res.json({statusCode: 200, message : " valid credentials", token: token});
         }

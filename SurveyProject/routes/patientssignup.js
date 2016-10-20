@@ -1,11 +1,11 @@
 
 var express = require('express');
-console.log('home.js');
-var home = express.Router();
+console.log('patientssignup.js');
+var patientssignup = express.Router();
 var verify_token = require('../models/verify');
 
-home.get('/', function (req, res,next) {
-	console.log('home page');
+patientssignup.get('/', function (req, res,next) {
+	console.log('patientssignup');
     token = req.session.token;
     console.log(token);
     verify_token.verify(token,function(err, decoded) {
@@ -13,7 +13,7 @@ home.get('/', function (req, res,next) {
   if(!err){
   	console.log(decoded.user);
   	user = decoded.user;
-      res.render('pages/home');
+      res.render('pages/patientssignup');
       
       
       
@@ -27,4 +27,4 @@ home.get('/', function (req, res,next) {
 });
 });
 
-module.exports = home;
+module.exports = patientssignup;

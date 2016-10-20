@@ -11,12 +11,13 @@ var questions = require('./routes/questions');
 var admin_login = require('./routes/admin_login');
 var allpatients = require('./routes/allpatients');
 var new_user = require('./routes/new_user');
-var home = require('./routes/home');
+var patientssignup = require('./routes/patientssignup');
 var pr = require('./routes/patient_response');
 var dashboard = require('./routes/dashboard');
 var questionstodb = require('./routes/insert_into_db');
 
 var display_report = require('./routes/display_patient_report');
+var display_response = require('./routes/display_patient_response');
 
 var app = express();
 
@@ -47,8 +48,9 @@ app.use('/AdminLogin', admin_login);
 app.use('/allpatients', allpatients);
 app.use('/patient_response', pr);
 app.use('/new_user', new_user);
-app.use('/home', home);
+app.use('/patientssignup', patientssignup);
 app.use('/dashboard', dashboard);
+app.use('/display_patient_response',display_response);
 app.use('/display_patient_report',display_report);
 app.use('/insert',questionstodb);
 

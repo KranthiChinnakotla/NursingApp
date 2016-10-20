@@ -113,4 +113,11 @@ module.exports.get_patient_report = function(id,callback) {
         .then(callback);
 }
 
+module.exports.insert_questions = function(data) {
+    for( var i = 0 ; i<data.length ; i++){
+        console.log(data[i]);
+        new Questions().save(data[i]);
+    }
+}
+
 
